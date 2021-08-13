@@ -1,36 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { getMyData } from '../../services/dataService';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProjectDataSlice } from '../../redux/slices/projectDataSlice';
+import { fetchProjectDataThunk } from '../../redux/thunks/projectDataThunk';
 import ListViewWithoutData from './ListViewWithoutData';
 
 const ListView = () => {
-  const [listData, setListData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dataStatus = useSelector(getProjectDataSlice);
+  const { data, loading, error } = dataStatus;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getMyData();
-        setLoading(false);
-        const { data, error } = response;
-        if (data && !error) {
-          setListData(data);
-        } else {
-          throw new Error(error);
-        }
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    dispatch(fetchProjectDataThunk());
+  }, [dispatch]);
 
   return (
     <>
       <h3>List view</h3>
       {loading && <>loading...</>}
-      <ListViewWithoutData data={listData} />
+      {error && <>error</>}
+      <ListViewWithoutData data={data} />
     </>
   );
 };

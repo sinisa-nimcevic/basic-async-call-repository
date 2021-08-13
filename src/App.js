@@ -1,10 +1,14 @@
+import { Provider } from 'react-redux';
 import ListView from './components/ListView/ListView';
+import store from './redux/stores/store';
 
 function App() {
   return (
-    <div className="App">
-      <ListView />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <ListView />
+      </div>
+    </Provider>
   );
 }
 
