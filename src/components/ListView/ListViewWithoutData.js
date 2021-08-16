@@ -5,8 +5,8 @@ const ListViewWithoutData = ({ data }) => {
   return (
     <ul className="list-view">
       {data.map((item) => (
-        <li key={`${item.id}-${item.title}`}>
-          <span>{item.id}</span> {slugify(item.title)}
+        <li key={`${item.id}-${slugify(item.title)}`}>
+          <span>{item.id}</span> {item.title}
         </li>
       ))}
     </ul>
