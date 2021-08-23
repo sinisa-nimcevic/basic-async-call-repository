@@ -1,36 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { getMyData } from '../../services/dataService';
+import React, { useEffect } from 'react';
+import { useMachine } from '@xstate/react';
+import { dataMachine, FETCH_COMMAND } from '../../machines/dataMachine';
 import ListViewWithoutData from './ListViewWithoutData';
 
 const ListView = () => {
-  const [listData, setListData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [current, send] = useMachine(dataMachine);
+  const loading = current.matches('loading');
+  const error = current.matches('rejected');
+  const { data } = current.context;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getMyData();
-        setLoading(false);
-        const { data, error } = response;
-        if (data && !error) {
-          setListData(data);
-        } else {
-          throw new Error(error);
-        }
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    send(FETCH_COMMAND);
+  }, [send]);
 
   return (
     <>
       <h3>List view</h3>
       {loading && <>loading...</>}
-      <ListViewWithoutData data={listData} />
+      {error && <>error...</>}
+      <ListViewWithoutData data={data} />
     </>
   );
 };
