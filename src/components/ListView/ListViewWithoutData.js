@@ -1,14 +1,12 @@
 import React from 'react';
-import slugify from 'slugify';
 
 const ListViewWithoutData = ({ data }) => {
   return (
     <ul className="list-view">
-      {data.map((item) => (
-        <li key={`${item.id}-${slugify(item.title)}`}>
-          <span>{item.id}</span> {item.title}
-        </li>
-      ))}
+      {data.map((item) => {
+        const { id, title } = item;
+        return <li key={id}>{title}</li>;
+      })}
     </ul>
   );
 };

@@ -8,12 +8,12 @@
     "@testing-library/user-event": "^12.1.10",
     "@xstate/react": "^1.5.1",
     "lorem-ipsum": "^2.0.3",
+    "nanoid": "^3.1.25",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
     "redux-toolkit": "^1.1.2",
-    "slugify": "^1.6.0",
     "web-vitals": "^1.0.1",
     "xstate": "^4.23.1"
   },

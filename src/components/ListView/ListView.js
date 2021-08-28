@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import GlobalStateContext from '../../contexts/globalStateContext';
+import { FETCH_COMMAND, states } from '../../machines/dataMachine';
 import ListViewWithoutData from './ListViewWithoutData';
-import { dataMachine, FETCH_COMMAND, states } from '../../machines/dataMachine';
-import { useMachine } from '@xstate/react';
 
 const ListView = () => {
-  const [current, send] = useMachine(dataMachine);
+  const globalState = useContext(GlobalStateContext);
+  const [current, send] = globalState;
   const loading = current.matches(states.loading);
   const error = current.matches(states.rejected);
   const { data } = current.context;

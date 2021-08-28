@@ -1,10 +1,12 @@
+import { nanoid } from 'nanoid';
+
 const { loremIpsum } = require('lorem-ipsum');
 
 const mockData = [];
 
-for (let i = 1; i < 40; i++) {
+for (let i = 0; i < 40; i++) {
   mockData.push({
-    id: i,
+    id: nanoid(),
     title: loremIpsum(),
   });
 }
