@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useMachine } from '@xstate/react';
-import { dataMachine, FETCH_COMMAND } from '../../machines/dataMachine';
 import ListViewWithoutData from './ListViewWithoutData';
+import { dataMachine, FETCH_COMMAND, states } from '../../machines/dataMachine';
+import { useMachine } from '@xstate/react';
 
 const ListView = () => {
   const [current, send] = useMachine(dataMachine);
-  const loading = current.matches('loading');
-  const error = current.matches('rejected');
+  const loading = current.matches(states.loading);
+  const error = current.matches(states.rejected);
   const { data } = current.context;
 
   useEffect(() => {

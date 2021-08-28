@@ -2,7 +2,7 @@ import { assign, createMachine } from 'xstate';
 import { getMyData } from '../services/dataService';
 
 export const FETCH_COMMAND = 'FETCH';
-const states = {
+export const states = {
   idle: 'idle',
   loading: 'loading',
   resolved: 'resolved',
@@ -45,7 +45,7 @@ export const dataMachine = createMachine({
     },
     rejected: {
       on: {
-        FETCH: states.loading,
+        [FETCH_COMMAND]: states.loading,
       },
     },
   },
