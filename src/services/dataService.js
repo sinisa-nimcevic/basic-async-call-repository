@@ -2,10 +2,11 @@ const { loremIpsum } = require('lorem-ipsum');
 
 const mockData = [];
 
-for (let i = 1; i < 40; i++) {
+for (let i = 1; i < 18; i++) {
   mockData.push({
     id: i,
     title: loremIpsum(),
+    isActive: false,
   });
 }
 

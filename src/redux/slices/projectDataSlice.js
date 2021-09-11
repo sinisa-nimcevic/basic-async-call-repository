@@ -22,11 +22,21 @@ export const projectDataSlice = createSlice({
       state.data = [];
       state.error = true;
     },
+    toggleSelectItem: (state, action) => {
+      const { id } = action.payload;
+      state.data = state.data.map((item) => {
+        if (item.id === id) {
+          item.isActive = !item.isActive;
+        }
+        return item;
+      });
+    },
   },
 });
 
 // Actions
-export const { startLoading, dataFetched, dataFetchedWithError } = projectDataSlice.actions;
+export const { startLoading, dataFetched, dataFetchedWithError, toggleSelectItem } =
+  projectDataSlice.actions;
 
 // Selector
 export const getProjectDataSlice = (state) => state.projectData;
