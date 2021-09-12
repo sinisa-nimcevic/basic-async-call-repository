@@ -1,7 +1,6 @@
-import { fireEvent, render, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { toMatchDiffSnapshot } from 'snapshot-diff';
-import store from '../../redux/stores/store';
+import { renderWrapped } from '../../services/testUtils';
 import ListView from './ListView';
 
 expect.extend({ toMatchDiffSnapshot });
@@ -34,10 +33,6 @@ jest.mock('../../services/dataService', () => {
     },
   };
 });
-
-const renderWrapped = (children) => {
-  return render(<Provider store={store}>{children}</Provider>);
-};
 
 describe('GIVEN ListView', () => {
   describe('WHEN component is mounted', () => {
