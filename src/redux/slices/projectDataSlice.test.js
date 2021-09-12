@@ -1,19 +1,6 @@
-import reducer, { initialState, startLoading, toggleSelectItem } from './projectDataSlice';
+import reducer, { initialState, toggleSelectItem } from './projectDataSlice';
 
 describe('GIVEN projectDataSlice', () => {
-  describe('WHEN startLoading is dispatched', () => {
-    it('THEN sets loading to true', async () => {
-      const previousState = {
-        ...initialState,
-      };
-
-      expect(reducer(previousState, startLoading())).toEqual({
-        ...initialState,
-        loading: true,
-      });
-    });
-  });
-
   describe('WHEN toggleSelectItem is dispatched', () => {
     it('THEN toggles the active state of a data item', () => {
       const dummyState = { ...initialState };

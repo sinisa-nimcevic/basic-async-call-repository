@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchProjectDataThunk } from '../thunks/projectDataThunk';
 
 export const initialState = {
   data: [],
@@ -10,18 +11,6 @@ export const projectDataSlice = createSlice({
   name: 'projectData',
   initialState,
   reducers: {
-    startLoading: (state) => {
-      state.loading = true;
-    },
-    dataFetched: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    dataFetchedWithError: (state) => {
-      state.loading = false;
-      state.data = [];
-      state.error = true;
-    },
     toggleSelectItem: (state, action) => {
       const { id } = action.payload;
       state.data = state.data.map((item) => {
@@ -31,6 +20,20 @@ export const projectDataSlice = createSlice({
         return item;
       });
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchProjectDataThunk.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchProjectDataThunk.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchProjectDataThunk.rejected, (state, action) => {
+      state.data = [];
+      state.loading = false;
+      state.error = true;
+    });
   },
 });
 
