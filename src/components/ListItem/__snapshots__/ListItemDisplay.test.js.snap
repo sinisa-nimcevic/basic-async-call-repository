@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GIVEN ListItemDisplay WHEN isActive is false THEN has different snapshot to isActive true 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -36,11 +36,11 @@
+        </li>
+      </div>
+    </body>,
+    \\"container\\": <div>
+      <li
+-       class=\\"list-item\\"
++       class=\\"list-item list-item--active\\"
+        data-testid=\\"list-item-display-1\\"
+      >
+        <span
+          class=\\"list-item__id\\"
+        >"
+`;

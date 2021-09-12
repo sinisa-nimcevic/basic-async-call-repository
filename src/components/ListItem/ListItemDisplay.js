@@ -6,7 +6,11 @@ const ListItemDisplay = ({ item, handleClick }) => {
   const { isActive, id, title } = item;
 
   return (
-    <li onClick={handleClick} className={classname('list-item', isActive && 'list-item--active')}>
+    <li
+      data-testid={`list-item-display-${id}`}
+      onClick={handleClick}
+      className={classname('list-item', isActive && 'list-item--active')}
+    >
       <span className="list-item__id">{id}</span>
       <span className="list-item__content">{title}</span>
     </li>

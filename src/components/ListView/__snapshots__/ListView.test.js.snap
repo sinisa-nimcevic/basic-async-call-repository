@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GIVEN ListView WHEN an item is clicked THEN becomes active 1`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -1,7 +1,7 @@
+  <li
+-   class=\\"list-item\\"
++   class=\\"list-item list-item--active\\"
+    data-testid=\\"list-item-display-2\\"
+  >
+    <span
+      class=\\"list-item__id\\"
+    >"
+`;
