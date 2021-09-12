@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import ListItemDisplay from './ListItemDisplay';
 
 const dummyItem = {
@@ -15,6 +15,16 @@ const dummyItemActive = {
 const dummyHandleClick = jest.fn();
 
 describe('GIVEN ListItemDisplay', () => {
+  describe('WHEN is rendered', () => {
+    it('THEN displays item id and title', () => {
+      const { getByText } = render(
+        <ListItemDisplay item={dummyItem} handleClick={dummyHandleClick} />
+      );
+
+      expect(getByText(dummyItem.id)).toBeInTheDocument();
+      expect(getByText(dummyItem.title)).toBeInTheDocument();
+    });
+  });
   describe('WHEN isActive is false', () => {
     it('THEN has proper classes assigned', () => {
       const item = render(<ListItemDisplay item={dummyItem} handleClick={dummyHandleClick} />);
@@ -209,8 +219,10 @@ describe('GIVEN ListItemDisplay', () => {
   });
   describe('WHEN item is clicked', () => {
     it('THEN calls handleClick once', () => {
-      render(<ListItemDisplay item={dummyItem} handleClick={dummyHandleClick} />);
-      fireEvent.click(screen.getByText(dummyItem.title));
+      const { getByText } = render(
+        <ListItemDisplay item={dummyItem} handleClick={dummyHandleClick} />
+      );
+      fireEvent.click(getByText(dummyItem.title));
       expect(dummyHandleClick).toHaveBeenCalledTimes(1);
     });
   });
