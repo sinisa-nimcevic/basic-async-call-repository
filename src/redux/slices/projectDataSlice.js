@@ -11,7 +11,7 @@ export const projectDataSlice = createSlice({
   initialState,
   reducers: {
     startLoading: (state) => {
-      state = { ...initialState, loading: true };
+      state.loading = true;
     },
     dataFetched: (state, action) => {
       state.loading = false;
