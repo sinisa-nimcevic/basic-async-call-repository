@@ -19,7 +19,7 @@ const dummyData = [
   },
 ];
 
-describe('GIVEN ListVIewDisplay', () => {
+describe('GIVEN ListViewDisplay', () => {
   describe('WHEN component is mounted', () => {
     it('THEN renders provided components', () => {
       const { getByText } = renderWrapped(<ListViewDisplay data={dummyData} />);
