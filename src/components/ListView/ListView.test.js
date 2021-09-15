@@ -1,4 +1,4 @@
-import { fireEvent, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { toMatchDiffSnapshot } from 'snapshot-diff';
 import dataService from '../../services/dataService';
 import { renderWrapped } from '../../services/testUtils';
@@ -63,4 +63,21 @@ describe('GIVEN ListView', () => {
       });
     });
   });
+
+  /*  Bringing this test in would make the ListItem test
+      checking for the active change unnecesary. This test
+      would be written in a top-down approach.
+  */
+  // describe('WHEN an item is clicked', () => {
+  //   it('THEN becomes active', async () => {
+  //     const { findByTestId, getByTestId } = renderWrapped(<ListView />);
+  //     const testid = `list-item-display-${dummyItems[1].id}`;
+
+  //     const testItem = await findByTestId(testid);
+  //     const snapshotA = testItem.cloneNode(true);
+  //     fireEvent.click(testItem);
+
+  //     expect(snapshotA).toMatchDiffSnapshot(getByTestId(testid));
+  //   });
+  // });
 });
