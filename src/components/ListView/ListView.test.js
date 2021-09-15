@@ -63,17 +63,4 @@ describe('GIVEN ListView', () => {
       });
     });
   });
-
-  describe('WHEN an item is clicked', () => {
-    it('THEN becomes active', async () => {
-      const { findByTestId, getByTestId } = renderWrapped(<ListView />);
-      const testid = `list-item-display-${dummyItems[1].id}`;
-
-      const testItem = await findByTestId(testid);
-      const snapshotA = testItem.cloneNode(true);
-      fireEvent.click(testItem);
-
-      expect(snapshotA).toMatchDiffSnapshot(getByTestId(testid));
-    });
-  });
 });
