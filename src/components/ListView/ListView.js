@@ -17,8 +17,8 @@ const ListView = () => {
   return (
     <div className="list-view">
       <h3>List view</h3>
-      {loading && <>loading...</>}
-      {error && <>error</>}
+      {loading && <div data-testid="loading-indicator">loading...</div>}
+      {error && <div data-testid="error-msg">error</div>}
       <ListViewDisplay data={data} />
     </div>
   );

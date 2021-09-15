@@ -10,7 +10,7 @@ for (let i = 1; i < 18; i++) {
   });
 }
 
-export const getMyData = () => {
+const getMyData = () => {
   const fakeAPIReply = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
@@ -22,3 +22,9 @@ export const getMyData = () => {
 
   return fakeAPIReply;
 };
+
+const dataService = {
+  getMyData: getMyData,
+};
+
+export default dataService;

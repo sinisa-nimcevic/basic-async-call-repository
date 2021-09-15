@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getMyData } from '../../services/dataService';
+import dataService from '../../services/dataService';
 
 export const fetchProjectDataThunk = createAsyncThunk('projectData/get', async (_, thunkApi) => {
-  const response = await getMyData();
+  const response = await dataService.getMyData();
   return response.data;
 });
