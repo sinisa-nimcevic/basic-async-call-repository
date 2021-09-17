@@ -54,7 +54,7 @@ describe('GIVEN ListView', () => {
     });
     it('THEN displays an error if the API returns an error', async () => {
       const mockDataServiceCall = jest.spyOn(dataService, 'getMyData');
-      mockDataServiceCall.mockRejectedValue({ data: [], error: true });
+      mockDataServiceCall.mockRejectedValueOnce({ data: [], error: true });
 
       const { getByTestId } = renderWrapped(<ListView />);
 
