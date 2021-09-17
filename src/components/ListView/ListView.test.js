@@ -32,9 +32,7 @@ const mockGetMyData = {
 describe('GIVEN ListView', () => {
   beforeEach(() => {
     jest.resetAllMocks();
-
-    const mockDataServiceCall = jest.spyOn(dataService, 'getMyData');
-    mockDataServiceCall.mockResolvedValue(mockGetMyData);
+    jest.spyOn(dataService, 'getMyData').mockResolvedValue(mockGetMyData);
   });
 
   describe('WHEN component is mounted', () => {
@@ -43,6 +41,7 @@ describe('GIVEN ListView', () => {
 
       expect(getByTestId('loading-indicator')).toBeInTheDocument();
     });
+
     it('THEN renders all of the dummy items', async () => {
       const { getByText } = renderWrapped(<ListView />);
 
@@ -52,9 +51,9 @@ describe('GIVEN ListView', () => {
         });
       }
     });
+
     it('THEN displays an error if the API returns an error', async () => {
-      const mockDataServiceCall = jest.spyOn(dataService, 'getMyData');
-      mockDataServiceCall.mockRejectedValueOnce({ data: [], error: true });
+      jest.spyOn(dataService, 'getMyData').mockRejectedValueOnce({ data: [], error: true });
 
       const { getByTestId } = renderWrapped(<ListView />);
 
